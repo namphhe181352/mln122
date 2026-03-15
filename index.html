@@ -393,6 +393,63 @@
     }
 
     /* ============================================================
+       PAGE TRANSITION OVERLAY
+       ============================================================ */
+    .page-transition {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0;
+      background: var(--color-red-dark);
+      transition: opacity 0.4s ease;
+    }
+    .page-transition.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    body {
+      animation: pageEnter 0.5s ease-out;
+    }
+    @keyframes pageEnter {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* CTA Button */
+    .timeline-item__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1.15rem;
+      padding: 0.55rem 1.25rem;
+      background: var(--color-red-dark);
+      color: var(--color-gold);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 12px rgba(139, 0, 0, 0.2);
+    }
+    .timeline-item__cta:hover {
+      background: var(--color-red);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(139, 0, 0, 0.3);
+    }
+    .timeline-item__cta svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+      transition: transform 0.3s;
+    }
+    .timeline-item__cta:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* ============================================================
        ENDING ORNAMENT
        ============================================================ */
     .timeline-end {
@@ -548,6 +605,10 @@
         border-radius: 8px 0 0 8px;
         text-align: left;
       }
+
+      .timeline-item:nth-child(odd) .timeline-item__cta {
+        float: right;
+      }
     }
 
     /* ============================================================
@@ -570,11 +631,18 @@
       .hero__scroll-cta .arrow {
         animation: none;
       }
+
+      body {
+        animation: none !important;
+      }
     }
   </style>
 </head>
 
 <body>
+
+  <!-- Page Transition Overlay -->
+  <div class="page-transition" id="pageTransition"></div>
 
   <!-- ========================================================
        HEADER / HERO SECTION
@@ -640,13 +708,11 @@
             Đây là giai đoạn miền Bắc dồn sức xây dựng kinh tế, kiến thiết
             cơ sở vật chất kỹ thuật.
           </p>
-          <div class="timeline-item__meaning">
-            <strong>Ý nghĩa:</strong> Đánh dấu bước ngoặt khi Đảng đề ra đường lối
-            tiến hành đồng thời hai nhiệm vụ chiến lược: Xây dựng Chủ nghĩa Xã hội
-            ở miền Bắc và hoàn thành cách mạng dân tộc dân chủ nhân dân ở miền Nam.
-            Miền Bắc chính thức trở thành hậu phương lớn vững chắc cho tiền tuyến
-            lớn miền Nam.
-          </div>
+
+          <a href="daihoi3.html" class="timeline-item__cta" id="cta-daihoi3">
+            Xem chi tiết
+            <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+          </a>
         </div>
       </div>
     </article>
@@ -676,12 +742,11 @@
             của người dân trong cờ hoa rợp trời. Sa bàn tái hiện lại ngày non sông
             liền một dải, kết thúc thắng lợi cuộc kháng chiến chống Mỹ cứu nước.
           </p>
-          <div class="timeline-item__meaning">
-            <strong>Ý nghĩa:</strong> Tổng kết thắng lợi vĩ đại của dân tộc,
-            hoàn thành thống nhất Tổ quốc về mặt nhà nước. Đại hội hoạch định
-            đường lối chung: Đưa cả nước tiến nhanh, tiến mạnh, tiến vững chắc
-            lên Chủ nghĩa Xã hội, mở ra một kỷ nguyên mới cho Việt Nam.
-          </div>
+
+          <a href="daihoi4.html" class="timeline-item__cta" id="cta-daihoi4">
+            Xem chi tiết
+            <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+          </a>
         </div>
       </div>
     </article>
@@ -712,13 +777,11 @@
             của đất nước về các giá trị nền tảng cốt lõi để duy trì và ổn định
             đời sống xã hội.
           </p>
-          <div class="timeline-item__meaning">
-            <strong>Ý nghĩa:</strong> Đứng trước những khó khăn của nền kinh tế,
-            Đại hội V đánh dấu bước điều chỉnh chiến lược quan trọng: Xác định
-            nông nghiệp là mặt trận hàng đầu, đẩy mạnh sản xuất hàng tiêu dùng
-            và tiếp tục xây dựng công nghiệp nặng có trọng điểm nhằm từng bước
-            ổn định, cải thiện đời sống nhân dân.
-          </div>
+
+          <a href="daihoi5.html" class="timeline-item__cta" id="cta-daihoi5">
+            Xem chi tiết
+            <svg viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>
+          </a>
         </div>
       </div>
     </article>
@@ -797,6 +860,20 @@
         });
         scrollCta.style.cursor = 'pointer';
       }
+    })();
+
+    /* ── Page Transition ── */
+    (function () {
+      var overlay = document.getElementById('pageTransition');
+      var links = document.querySelectorAll('.timeline-item__cta');
+      links.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          var href = this.getAttribute('href');
+          overlay.classList.add('active');
+          setTimeout(function () { window.location.href = href; }, 400);
+        });
+      });
     })();
   </script>
 

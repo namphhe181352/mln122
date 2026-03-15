@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đại hội IV — Đất nước thống nhất, đi lên CNXH</title>
+  <meta name="description"
+    content="Chi tiết Đại hội Đại biểu Toàn quốc lần thứ IV (1976) — Hoàn thành thống nhất Tổ quốc, cả nước đi lên Chủ nghĩa Xã hội." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    :root {
+      --red-dark: #8B0000;
+      --red: #C8102E;
+      --red-light: #E63946;
+      --gold: #FFD700;
+      --gold-dark: #DAA520;
+      --cream: #FDF8F0;
+      --cream-dark: #F5ECDC;
+      --text: #2C1810;
+      --text-light: #5C4033;
+      --white: #FFFFFF;
+      --heading: 'Playfair Display', 'Georgia', serif;
+      --body: 'Roboto', 'Segoe UI', sans-serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--body);
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+
+    .back-btn {
+      position: fixed;
+      top: 1rem; left: 1rem;
+      z-index: 100;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(139,0,0,0.85);
+      backdrop-filter: blur(8px);
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      transition: background 0.3s, transform 0.3s;
+    }
+    .back-btn:hover { background: var(--red-dark); transform: scale(1.05); }
+    .back-btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+    .banner {
+      position: relative;
+      min-height: 55vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 1.5rem 3rem;
+      background: linear-gradient(170deg, var(--red-dark) 0%, var(--red) 50%, #6B0F1A 100%);
+      color: var(--white);
+      overflow: hidden;
+    }
+    .banner::before {
+      content: '★';
+      position: absolute;
+      font-size: 40vw;
+      color: rgba(255,215,0,0.05);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .banner__year {
+      display: inline-block;
+      border: 2px solid var(--gold);
+      border-radius: 50px;
+      padding: 0.3rem 1.5rem;
+      font-family: var(--heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 3px;
+      margin-bottom: 1.25rem;
+      animation: fadeIn 0.8s ease-out;
+    }
+    .banner__title {
+      font-family: var(--heading);
+      font-weight: 900;
+      font-size: clamp(1.5rem, 5.5vw, 2.8rem);
+      line-height: 1.2;
+      text-shadow: 2px 4px 12px rgba(0,0,0,0.3);
+      margin-bottom: 0.75rem;
+      animation: fadeInUp 0.8s ease-out 0.15s both;
+    }
+    .banner__subtitle {
+      font-size: clamp(0.85rem, 2.5vw, 1.05rem);
+      color: rgba(255,255,255,0.8);
+      max-width: 540px;
+      animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+    .banner__divider {
+      width: 60px; height: 3px;
+      background: var(--gold);
+      border: none; border-radius: 2px;
+      margin: 1.25rem auto 0;
+      animation: fadeInUp 0.8s ease-out 0.25s both;
+    }
+
+    .banner-image {
+      width: 100%;
+      max-width: 720px;
+      margin: -2rem auto 0;
+      position: relative;
+      z-index: 1;
+    }
+    .banner-image img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+    }
+
+    .content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+
+    .info-block {
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .info-block.visible { opacity: 1; transform: translateY(0); }
+
+    .info-block__label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.7rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--red);
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+    .info-block__label::before {
+      content: '';
+      width: 20px; height: 2px;
+      background: var(--gold-dark);
+      border-radius: 1px;
+    }
+
+    .info-block__title {
+      font-family: var(--heading);
+      font-size: clamp(1.15rem, 3.5vw, 1.5rem);
+      color: var(--red-dark);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+
+    .info-block__text {
+      font-size: 0.92rem;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    .highlight-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 1.25rem;
+      box-shadow: 0 4px 20px rgba(44,24,16,0.07);
+      border-left: 4px solid var(--gold-dark);
+      margin-top: 0.75rem;
+    }
+    .highlight-card p {
+      font-size: 0.9rem;
+      color: var(--text);
+      line-height: 1.75;
+    }
+    .highlight-card strong { color: var(--red-dark); }
+
+    .strategy-list {
+      list-style: none;
+      margin-top: 0.75rem;
+    }
+    .strategy-list li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+    .strategy-list li::before {
+      content: '★';
+      position: absolute;
+      left: 0; top: 0;
+      color: var(--gold-dark);
+      font-size: 0.75rem;
+    }
+    .strategy-list li strong { color: var(--red-dark); font-weight: 600; }
+
+    .meaning-section {
+      background: linear-gradient(135deg, rgba(200,16,46,0.04), rgba(255,215,0,0.06));
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-top: 0.5rem;
+      border: 1px solid rgba(218,165,32,0.15);
+    }
+    .meaning-section p {
+      font-size: 0.92rem;
+      color: var(--text);
+      line-height: 1.8;
+      font-style: italic;
+    }
+    .meaning-section strong { color: var(--red-dark); font-style: normal; }
+
+    .site-footer {
+      background: var(--red-dark);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 2rem 1.25rem;
+      font-size: 0.8rem;
+    }
+    .site-footer__brand {
+      color: var(--gold);
+      font-family: var(--heading);
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+    .site-footer a { color: var(--gold); text-decoration: none; }
+
+    /* Page Transition */
+    .page-transition {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0;
+      background: var(--red-dark);
+      transition: opacity 0.4s ease;
+    }
+    .page-transition.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    body {
+      animation: pageEnter 0.5s ease-out;
+    }
+    @keyframes pageEnter {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .info-block { opacity: 1; transform: none; transition: none; }
+      .banner__year, .banner__title, .banner__subtitle { animation: none !important; }
+      body { animation: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Page Transition Overlay -->
+  <div class="page-transition" id="pageTransition"></div>
+
+  <a href="index.html" class="back-btn" id="backBtn">
+    <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+    Trở về
+  </a>
+
+  <header class="banner">
+    <div class="banner__year">1976</div>
+    <h1 class="banner__title">Đại hội Đại biểu Toàn quốc<br>lần thứ IV</h1>
+    <hr class="banner__divider" />
+    <p class="banner__subtitle">
+      Hoàn thành thống nhất Tổ quốc, cả nước đi lên Chủ nghĩa Xã hội
+    </p>
+  </header>
+
+  <div class="banner-image">
+    <img src="images/dai-hoi-4.png"
+      alt="Đại hội IV – Xe tăng húc đổ cổng Dinh Độc Lập" />
+  </div>
+
+  <main class="content">
+
+    <div class="info-block" id="b1">
+      <div class="info-block__label">Thời gian & Địa điểm</div>
+      <h2 class="info-block__title">14/12 – 20/12/1976 tại Thủ đô Hà Nội</h2>
+    </div>
+
+    <div class="info-block" id="b2">
+      <div class="info-block__label">Bối cảnh lịch sử</div>
+      <h2 class="info-block__title">Kỷ nguyên hòa bình, thống nhất</h2>
+      <p class="info-block__text">
+        Đại thắng mùa Xuân năm 1975 đã giải phóng hoàn toàn miền Nam. Đất nước đã được thống nhất
+        về mặt lãnh thổ và nhà nước (sau kỳ họp Quốc hội khóa VI tháng 7/1976), mở ra một kỷ nguyên
+        mới — kỷ nguyên hòa bình, độc lập, thống nhất và đi lên Chủ nghĩa Xã hội.
+      </p>
+    </div>
+
+    <div class="info-block" id="b3">
+      <div class="info-block__label">Đường lối chiến lược cốt lõi</div>
+      <h2 class="info-block__title">Tổng kết chiến thắng, hoạch định tương lai</h2>
+      <p class="info-block__text">
+        Đại hội tổng kết cuộc kháng chiến chống Mỹ cứu nước và vạch ra đường lối
+        chung cho cách mạng Xã hội Chủ nghĩa trong giai đoạn mới:
+      </p>
+      <ul class="strategy-list">
+        <li>
+          Nắm vững <strong>chuyên chính vô sản</strong>, phát huy quyền làm chủ tập thể
+          của nhân dân lao động.
+        </li>
+        <li>
+          Tiến hành đồng thời <strong>3 cuộc cách mạng</strong>: cách mạng về quan hệ sản xuất,
+          cách mạng khoa học – kỹ thuật, và cách mạng tư tưởng – văn hóa
+          <em>(trong đó cách mạng khoa học – kỹ thuật là then chốt)</em>.
+        </li>
+      </ul>
+    </div>
+
+    <div class="info-block" id="b4">
+      <div class="info-block__label">Định hướng kinh tế</div>
+      <h2 class="info-block__title">Kế hoạch 5 năm lần thứ hai (1976–1980)</h2>
+      <div class="highlight-card">
+        <p>
+          Chủ trương <strong>đẩy mạnh công nghiệp hóa Xã hội Chủ nghĩa</strong>,
+          xây dựng nền kinh tế quốc dân thống nhất quy mô lớn trên phạm vi cả nước.
+        </p>
+      </div>
+    </div>
+
+    <div class="info-block" id="b5">
+      <div class="info-block__label">Ý nghĩa lịch sử</div>
+      <h2 class="info-block__title">Đại hội của toàn thắng</h2>
+      <div class="meaning-section">
+        <p>
+          <strong>Đây là Đại hội của toàn thắng</strong>, ghi nhận sự trọn vẹn của non sông,
+          chính thức đưa cả nước cùng bước vào thời kỳ quá độ lên Chủ nghĩa Xã hội,
+          dù phía trước còn nhiều thử thách lớn về khôi phục kinh tế sau chiến tranh.
+        </p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p class="site-footer__brand">Dòng Chảy Lịch Sử Việt Nam</p>
+    <p>Dự án mô hình sa bàn &mdash; 2026</p>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+      var blocks = document.querySelectorAll('.info-block');
+      if ('IntersectionObserver' in window) {
+        var obs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+          });
+        }, { rootMargin: '0px 0px -40px 0px', threshold: 0.15 });
+        blocks.forEach(function (b) { obs.observe(b); });
+      } else {
+        blocks.forEach(function (b) { b.classList.add('visible'); });
+      }
+
+      /* Page Transition */
+      var overlay = document.getElementById('pageTransition');
+      var backBtn = document.getElementById('backBtn');
+      if (backBtn) {
+        backBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          var href = this.getAttribute('href');
+          overlay.classList.add('active');
+          setTimeout(function () { window.location.href = href; }, 400);
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>
